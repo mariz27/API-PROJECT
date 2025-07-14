@@ -199,7 +199,7 @@ nav ul li:hover {
 
 /* Join button */
 .join-button button {
-  background-color: #2ecc71;
+  background-color: #11aeca;
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
@@ -210,7 +210,7 @@ nav ul li:hover {
 }
 
 .join-button button:hover {
-  background-color: #27ae60;
+  background-color: #11aeca;
 }
 
 /* Gallery Section */
@@ -287,7 +287,7 @@ nav ul li:hover {
 /* Modern Spinner Loader */
 .loader {
   border: 8px solid #f3f3f3;
-  border-top: 8px solid #16a085;
+  border-top: 8px solid #11aeca;
   border-radius: 50%;
   width: 60px;
   height: 60px;
