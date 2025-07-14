@@ -16,12 +16,12 @@
 
     /* Upload button styling */
     .upload-btn-wrapper {
-      margin-left: 20px;
+      margin-right: 20px;
       display: inline-block;
     }
 
     #uploadBtn {
-      padding: 6px 12px;
+      padding: 6px 10px;
       cursor: pointer;
     }
   </style>
@@ -60,25 +60,27 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contactSection" style="display:none; padding: 20px;">
-      <div style="max-width: 500px; width: 100%;">
-        <h2>Contact Us</h2>
-        <p>If you have questions or suggestions, feel free to reach out!</p>
-        <form id="contactForm">
-          <label>Name:</label>
-          <input type="text" placeholder="Your name" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
-          
-          <label>Email address:</label>
-          <input type="email" placeholder="Your email" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
-          
-          <label>Message:</label>
-          <textarea placeholder="Your message" rows="5" style="width: 100%; padding: 8px; margin-bottom: 10px;" required></textarea>
-          
-          <button type="submit" style="padding: 10px 20px;">Send Message</button>
-        </form>
-      </div>
-    </section>
-  </main>
+<section id="contactSection" style="display:none; padding: 40px 20px; 
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; 
+  color: white;">
+  <div style="max-width: 500px; width: 100%; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px;">
+    <h2>Contact Us</h2>
+    <p>If you have questions or suggestions, feel free to reach out!</p>
+    <form id="contactForm">
+      <label>Name:</label>
+      <input type="text" placeholder="Your name" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
+      
+      <label>Email address:</label>
+      <input type="email" placeholder="Your email" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
+      
+      <label>Message:</label>
+      <textarea placeholder="Your message" rows="5" style="width: 100%; padding: 8px; margin-bottom: 10px;" required></textarea>
+      
+      <button type="submit" style="padding: 10px 20px;">Send Message</button>
+    </form>
+  </div>
+</section>
+
 
   <script src="script.js"></script>
   <script>
