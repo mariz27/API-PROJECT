@@ -146,9 +146,24 @@ header {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #0a56b9;
+  background: linear-gradient(270deg, 
+    #ff6f61,   
+    #ff8ecf, 
+    #6fb1fc,   
+    #ffe169,   
+    #ff6f61    
+  );
+  background-size: 800% 800%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorFlow 8s ease infinite;
 }
 
+@keyframes sunsetText {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 .search-bar {
   display: flex;
   flex-grow: 1;
@@ -167,12 +182,30 @@ header {
 
 .search-bar button {
   padding: 0.6rem 1.5rem;
-  background-color: #0a56b9;
+  background: linear-gradient(270deg, 
+    #c74a3f,   /* Dark Coral */
+    #d86aa8,   /* Dark Pink */
+    #3c75d9,   /* Dark Blue */
+    #c4aa3a,   /* Dark Yellow */
+    #c74a3f    /* Back to Dark Coral */
+  );
+  background-size: 800% 800%;
   color: white;
   border: none;
   border-radius: 0 24px 24px 0;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease;
+  animation: colorFlow 8s ease infinite;
+}
+
+@keyframes colorFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.search-bar button:hover {
+  transform: scale(1.05);
 }
 
 .search-bar button:hover {
