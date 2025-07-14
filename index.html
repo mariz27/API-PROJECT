@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picto Image Gallery</title>
+  <link rel="stylesheet" href="styles.css" /> 
+  <style>
+    /* Only apply when contactSection is visible */
+    #contactSection.showCentered {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px); /* adjust for header height */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Picto</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for free photos" />
+      <button id="searchBtn">Search</button>
+    </div>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Videos</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="loadingScreen" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;">
+    <div class="chibi-loader">
+      <div class="chibi-body">
+        <div class="chibi-face"></div>
+        <div class="chibi-ear left"></div>
+        <div class="chibi-ear right"></div>
+        <div class="chibi-hand left"></div>
+        <div class="chibi-hand right"></div>
+        <div class="chibi-foot left"></div>
+        <div class="chibi-foot right"></div>
+      </div>
+      <div class="chibi-heart"></div>
+    </div>
+    <div style="margin-left:30px;font-size:1.2em;color:#333;">Loading... Please wait!</div>
+  </div>
+
+  <main>
+    <section class="free-stock-photos" id="photosSection">
+      <div id="imageGallery" class="photos"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contactSection" style="display:none; padding: 20px;">
+      <div style="max-width: 500px; width: 100%;">
+        <h2>Contact Us</h2>
+        <p>If you have questions or suggestions, feel free to reach out!</p>
+        <form id="contactForm">
+          <label>Name:</label>
+          <input type="text" placeholder="Your name" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
+          
+          <label>Email address:</label>
+          <input type="email" placeholder="Your email" style="width: 100%; padding: 8px; margin-bottom: 10px;" required />
+          
+          <label>Message:</label>
+          <textarea placeholder="Your message" rows="5" style="width: 100%; padding: 8px; margin-bottom: 10px;" required></textarea>
+          
+          <button type="submit" style="padding: 10px 20px;">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    let currentTab = 'Home';
+
+    // Navigation logic
+    document.querySelectorAll('nav ul li').forEach(li => {
+      li.addEventListener('click', function () {
+        const text = this.textContent.trim();
+        currentTab = text;
+
+        // Hide all sections
+        document.getElementById('photosSection').style.display = 'none';
+        document.getElementById('contactSection').style.display = 'none';
+        document.getElementById('contactSection').classList.remove('showCentered');
+
+        if (text === 'Videos') {
+          window.location.href = 'videos.html';
+        } else if (text === 'Home') {
+          document.getElementById('photosSection').style.display = '';
+          showLoading();
+          fetchPopularImages().finally(hideLoading);
+        } else if (text === 'Contact') {
+          const contact = document.getElementById('contactSection');
+          contact.style.display = 'flex';
+          contact.classList.add('showCentered');
+        }
+      });
+    });
+
+    // Search button logic
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim();
+      if (!query) return;
+
+      showLoading();
+      if (currentTab === 'Videos') {
+        // This will not run in index.html since Videos link goes to videos.html
+        searchVideos(query).finally(hideLoading);
+      } else {
+        searchImages(query).finally(hideLoading);
+      }
+    });
+
+    // Contact form submission handler
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Thank you for reaching out! We'll get back to you soon.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
