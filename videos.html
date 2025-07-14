@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pexels Video Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">pexels</div>
+    <div class="search-bar">
+      <select>
+        <option>Videos</option>
+      </select>
+      <input type="text" id="videoSearchInput" placeholder="Search for free videos" />
+      <button id="videoSearchBtn">Search</button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="videos.html">Videos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="free-stock-videos">
+      <h2>Free Stock Videos</h2>
+      <div id="videoGallery" class="videos"></div>
+    </section>
+  </main>
+
+  <script>
+    const videoSearchInput = document.getElementById('videoSearchInput');
+    const videoSearchBtn = document.getElementById('videoSearchBtn');
+    const videoGallery = document.getElementById('videoGallery');
+
+
+const API_KEY = 'zd0KWpTeAu53is28npOGZtlmbQ8bnEgmfoJ0dZgfxbC9c7BCmZhGLlui';
+const VIDEO_API = 'https://api.pexels.com/videos/search';
+
+    videoSearchBtn.addEventListener('click', () => {
+      const query = videoSearchInput.value.trim();
+      if (query !== '') {
+        fetchVideos(query);
+      }
+    });
+
+    function fetchVideos(query) {
+      fetch(${VIDEO_API}?query=${encodeURIComponent(query)}&per_page=6, {
+        headers: {
+          Authorization: API_KEY
+        }
+      })
+        .then(res => {
+          if (!res.ok) throw new Error(Error: ${res.status});
+          return res.json();
+        })
+        .then(data => displayVideos(data.videos))
+        .catch(err => {
+          console.error('Video fetch failed:', err);
+          videoGallery.innerHTML = <p>Couldn’t load videos. Try again.</p>;
+        });
+    }
+
+    function displayVideos(videos) {
+      videoGallery.innerHTML = '';
+      if (videos.length === 0) {
+        videoGallery.innerHTML = <p>No videos found. Try another keyword!</p>;
+        return;
+      }
+
+      videos.forEach(video => {
+        const vid = document.createElement('video');
+        vid.src = video.video_files.find(f => f.quality === 'sd')?.link || video.video_files[0].link;
+        vid.controls = true;
+        vid.width = 320;
+        vid.height = 180;
+        vid.title = Video by ${video.user.name};
+        videoGallery.appendChild(vid);
+      });
+    }
+  </script>
+</body>
+</html>
