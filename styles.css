@@ -146,7 +146,7 @@ header {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #16a085;
+  color: #0a56b9;
 }
 
 .search-bar {
@@ -167,7 +167,7 @@ header {
 
 .search-bar button {
   padding: 0.6rem 1.5rem;
-  background-color: #16a085;
+  background-color: #0a56b9;
   color: white;
   border: none;
   border-radius: 0 24px 24px 0;
@@ -176,7 +176,7 @@ header {
 }
 
 .search-bar button:hover {
-  background-color: #13856b;
+  background-color: #0a56b9;
 }
 
 /* Navigation */
@@ -199,7 +199,7 @@ nav ul li:hover {
 
 /* Join button */
 .join-button button {
-  background-color: #11aeca;
+  background-color: #0a56b9;
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
@@ -210,7 +210,7 @@ nav ul li:hover {
 }
 
 .join-button button:hover {
-  background-color: #11aeca;
+  background-color: #0a56b9;
 }
 
 /* Gallery Section */
@@ -287,7 +287,7 @@ nav ul li:hover {
 /* Modern Spinner Loader */
 .loader {
   border: 8px solid #f3f3f3;
-  border-top: 8px solid #11aeca;
+  border-top: 8px solid #0a56b9;
   border-radius: 50%;
   width: 60px;
   height: 60px;
