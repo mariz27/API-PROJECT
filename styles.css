@@ -1,121 +1,35 @@
-/* Cute chibi loader animation */
-.chibi-loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.chibi-body {
-  position: relative;
-  width: 70px;
+.photo-loader {
+  width: 120px;
   height: 90px;
-  background: #ffe0f0;
-  border-radius: 40px 40px 50px 50px / 40px 40px 60px 60px;
-  box-shadow: 0 4px 12px #e0b0c7;
-  margin-bottom: 10px;
-  animation: chibi-bounce 1s infinite ease-in-out;
+  background: linear-gradient(to bottom, #e0e0e0 20%, #f8f8f8 40%, #e0e0e0 60%);
+  background-size: 100% 200%;
+  border-radius: 8px;
+  position: relative;
+  animation: photoLoading 1.5s infinite ease-in-out;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
-.chibi-face {
-  position: absolute;
-  top: 18px;
-  left: 50%;
-  width: 36px;
-  height: 36px;
-  background: #fff;
-  border-radius: 50%;
-  border: 2px solid #e0b0c7;
-  transform: translateX(-50%);
-  box-shadow: 0 2px 6px #e0b0c7;
-}
-.chibi-ear {
-  position: absolute;
-  top: 6px;
-  width: 18px;
-  height: 18px;
-  background: #ffe0f0;
-  border-radius: 50%;
-  border: 2px solid #e0b0c7;
-}
-.chibi-ear.left {
-  left: -10px;
-}
-.chibi-ear.right {
-  right: -10px;
-}
-.chibi-hand {
-  position: absolute;
-  top: 55px;
-  width: 16px;
-  height: 16px;
-  background: #fff;
-  border-radius: 50%;
-  border: 2px solid #e0b0c7;
-  z-index: 2;
-}
-.chibi-hand.left {
-  left: -12px;
-  animation: chibi-hand-wave 1s infinite alternate;
-}
-.chibi-hand.right {
-  right: -12px;
-  animation: chibi-hand-wave 1s infinite alternate-reverse;
-}
-.chibi-foot {
-  position: absolute;
-  bottom: -8px;
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  border-radius: 50%;
-  border: 2px solid #e0b0c7;
-  z-index: 1;
-}
-.chibi-foot.left {
-  left: 10px;
-}
-.chibi-foot.right {
-  right: 10px;
-}
-.chibi-heart {
-  width: 22px;
-  height: 22px;
-  background: #ff6fae;
-  position: absolute;
-  left: 50%;
-  top: 80px;
-  transform: translateX(-50%) scale(1);
-  border-radius: 50% 50% 0 0;
-  animation: chibi-heart-beat 1s infinite;
-  z-index: 3;
-}
-.chibi-heart:before,
-.chibi-heart:after {
+
+.photo-loader::after {
   content: '';
   position: absolute;
-  width: 22px;
-  height: 22px;
-  background: #ff6fae;
-  border-radius: 50%;
+  top: 10px;
+  left: 10px;
+  width: 60px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 4px;
 }
-.chibi-heart:before {
-  left: -11px;
-  top: 0;
-}
-.chibi-heart:after {
-  left: 0;
-  top: -11px;
-}
-@keyframes chibi-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes chibi-hand-wave {
-  0% { transform: rotate(-10deg); }
-  100% { transform: rotate(30deg); }
-}
-@keyframes chibi-heart-beat {
-  0%, 100% { transform: translateX(-50%) scale(1); }
-  50% { transform: translateX(-50%) scale(1.25); }
+
+@keyframes photoLoading {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
 /* Reset */
 {
@@ -146,9 +60,12 @@ header {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #16a085;
+  background: linear-gradient(90deg, #ff9a00, #ff6f61, #d72638, #9336fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
-
 .search-bar {
   display: flex;
   flex-grow: 1;
@@ -167,7 +84,7 @@ header {
 
 .search-bar button {
   padding: 0.6rem 1.5rem;
-  background-color: #16a085;
+  background: linear-gradient(to right, #ff9a00, #ff6f61, #d72638); /* Sunset gradient */
   color: white;
   border: none;
   border-radius: 0 24px 24px 0;
@@ -175,10 +92,10 @@ header {
   transition: background 0.3s ease;
 }
 
-.search-bar button:hover {
-  background-color: #13856b;
-}
 
+.search-bar button:hover {
+  background: linear-gradient(to right, #ff9a00, #ff6f61, #d72638);
+}
 /* Navigation */
 nav ul {
   list-style: none;
