@@ -13,15 +13,32 @@
       align-items: center;
       height: calc(100vh - 80px); /* adjust for header height */
     }
+
+    /* Upload button styling */
+    .upload-btn-wrapper {
+      margin-left: 20px;
+      display: inline-block;
+    }
+
+    #uploadBtn {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Picto</div>
+    <div class="logo">PicYours</div>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search for free photos" />
       <button id="searchBtn">Search</button>
     </div>
+
+    <div class="upload-btn-wrapper">
+      <button id="uploadBtn">Upload Image</button>
+      <input type="file" id="imageInput" accept="image/*" style="display:none;" />
+    </div>
+
     <nav>
       <ul>
         <li>Home</li>
@@ -31,11 +48,12 @@
     </nav>
   </header>
 
- <div id="loadingScreen" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;">
-<div class="photo-loader"></div>
-<div style="margin-left: 30px; font-size: 1.2em; color: #333;">Loading photos...</div>
+<div id="loadingScreen" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+  <div class="loader"></div>
+  <div style="margin-top:20px;font-size:1.2em;color:#333;">Loading... Please wait!</div>
+</div>
 
-  </div>
+
   <main>
     <section class="free-stock-photos" id="photosSection">
       <div id="imageGallery" class="photos"></div>
@@ -98,7 +116,6 @@
 
       showLoading();
       if (currentTab === 'Videos') {
-        // This will not run in index.html since Videos link goes to videos.html
         searchVideos(query).finally(hideLoading);
       } else {
         searchImages(query).finally(hideLoading);
@@ -110,6 +127,28 @@
       e.preventDefault();
       alert("Thank you for reaching out! We'll get back to you soon.");
       this.reset();
+    });
+
+    // Upload button logic
+    document.getElementById("uploadBtn").addEventListener("click", () => {
+      document.getElementById("imageInput").click();
+    });
+
+    document.getElementById("imageInput").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imgElement = document.createElement("img");
+          imgElement.src = e.target.result;
+          imgElement.style.width = "250px";
+          imgElement.style.margin = "10px";
+          document.getElementById("imageGallery").prepend(imgElement);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Please select a valid image file.");
+      }
     });
   </script>
 </body>
